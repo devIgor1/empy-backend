@@ -2,10 +2,13 @@ import { Router } from "express"
 import { ListPlansController } from "../controllers/plans/ListPlansController"
 import { CreateCustomPlanController } from "../controllers/plans/CreateCustomPlanController"
 import { CreateCheckoutController } from "../controllers/plans/CreateCheckoutController"
+import { GetPlanByIdController } from "../controllers/plans/GetPlanByIdController"
 
 const router = Router()
 
 router.get("/plans", new ListPlansController().handle)
+
+router.get("/plans/:id", new GetPlanByIdController().handle)
 
 router.post("/plans/custom", new CreateCustomPlanController().handle)
 

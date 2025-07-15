@@ -39,7 +39,7 @@ model Purchase {
   createdAt    DateTime       @default(now())
   billingCycle BillingCycle
   status       PurchaseStatus
-  plan         Plan           @relation(fields: [planId], references: [id])
+  plan         Plan          @relation(fields: [planId], references: [id], onDelete: Cascade)
 }
 
 enum BillingCycle {
