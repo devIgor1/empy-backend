@@ -45,7 +45,7 @@ async function seed() {
         internalName: plan.publicName.toLowerCase(),
         monthlyPrice: plan.monthlyPrice,
         annualPrice,
-        discount: +(discountRate * 100).toFixed(2), // 16.67
+        discount: Number((discountRate * 100).toFixed(2)),
         isCustom: false,
         offlineCredits: plan.offlineCredits,
         onlineCredits: plan.onlineCredits,
