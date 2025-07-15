@@ -35,7 +35,7 @@ model Purchase {
   customerId   String
   customerName String
   planId       String
-  valor        Float
+  amount       Float
   createdAt    DateTime       @default(now())
   billingCycle BillingCycle
   status       PurchaseStatus
