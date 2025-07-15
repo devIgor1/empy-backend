@@ -4,10 +4,10 @@ class ListPlansService {
   async execute() {
     const plans = await prismaClient.plan.findMany({
       where: {
-        ativo: true,
+        isActive: true,
       },
       orderBy: {
-        precoMensal: "asc",
+        monthlyPrice: "asc",
       },
     })
     return plans
