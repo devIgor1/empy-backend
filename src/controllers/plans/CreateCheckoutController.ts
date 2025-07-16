@@ -5,7 +5,14 @@ import { BillingCycle } from "@prisma/client"
 export class CreateCheckoutController {
   async handle(req: Request, res: Response) {
     const { planId, cycle } = req.params
-    const { namePublic, monthlyPrice, annualPrice } = req.body
+    const { namePublic, monthlyPrice, annualPrice, cardNumber } = req.body
+
+    const validFakeCard = "4111 1111 1111 1111"
+    if (cardNumber !== validFakeCard) {
+      return res.status(400).json({
+        error: "Atenção: o cartão fornecido é inválido.",
+      })
+    }
 
     const amount = cycle === "monthly" ? monthlyPrice : annualPrice
     const billingCycle: BillingCycle =
