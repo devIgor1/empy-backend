@@ -1,5 +1,4 @@
 import prismaClient from "./index"
-import { v4 as uuidv4 } from "uuid"
 import dotenv from "dotenv"
 
 dotenv.config()
@@ -10,6 +9,7 @@ async function seed() {
 
   const plans = [
     {
+      id: "1",
       publicName: "Light",
       monthlyPrice: 157.0,
       offlineCredits: 2,
@@ -17,6 +17,7 @@ async function seed() {
       isRecommended: false,
     },
     {
+      id: "2",
       publicName: "Standard",
       monthlyPrice: 249.5,
       offlineCredits: 10,
@@ -24,6 +25,7 @@ async function seed() {
       isRecommended: true,
     },
     {
+      id: "3",
       publicName: "Pro",
       monthlyPrice: 347.0,
       offlineCredits: 30,
@@ -33,14 +35,13 @@ async function seed() {
   ]
 
   for (const plan of plans) {
-    const id = uuidv4()
     const annualPrice = +(plan.monthlyPrice * 12 * (1 - discountRate)).toFixed(
       2
     )
 
     await prismaClient.plan.create({
       data: {
-        id,
+        id: plan.id,
         publicName: plan.publicName,
         internalName: plan.publicName.toLowerCase(),
         monthlyPrice: plan.monthlyPrice,
@@ -51,7 +52,7 @@ async function seed() {
         onlineCredits: plan.onlineCredits,
         isActive: true,
         isRecommended: plan.isRecommended,
-        paymentLink: `${baseUrl}/pay/${id}`,
+        paymentLink: `${baseUrl}/pay/${plan.id}`,
       },
     })
   }
