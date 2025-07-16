@@ -1,8 +1,15 @@
-export function simulatePayment():
-  | "PAID"
-  | "DECLINED_NO_LIMIT"
-  | "NOT_AUTHORIZED" {
-  const rand = Math.random()
-  if (rand < 0.8) return "PAID"
-  return Math.random() < 0.5 ? "DECLINED_NO_LIMIT" : "NOT_AUTHORIZED"
+let callCount = 0
+
+export function simulatePayment() {
+  const sequence = [
+    "PAID",
+    "DECLINED_NO_LIMIT",
+    "PAID",
+    "NOT_AUTHORIZED",
+    "PAID",
+  ]
+
+  const status = sequence[callCount] || "PAID"
+  callCount++
+  return status
 }

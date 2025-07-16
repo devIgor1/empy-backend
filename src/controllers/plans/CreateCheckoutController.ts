@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { CreatePurchaseService } from "../../services/plans/CreateCheckoutService"
 import { BillingCycle } from "@prisma/client"
+import { getStatusMessage } from "../../utils/statusCheckoutMessage"
 
 export class CreateCheckoutController {
   async handle(req: Request, res: Response) {
@@ -10,6 +11,7 @@ export class CreateCheckoutController {
     const validFakeCard = "4111 1111 1111 1111"
     if (cardNumber !== validFakeCard) {
       return res.status(400).json({
+        success: false,
         error: "Atenção: o cartão fornecido é inválido.",
       })
     }
@@ -19,7 +21,6 @@ export class CreateCheckoutController {
       cycle === "monthly" ? "MONTHLY" : "ANNUAL"
 
     const service = new CreatePurchaseService()
-
     const purchase = await service.execute({
       planId,
       amount,
@@ -27,6 +28,14 @@ export class CreateCheckoutController {
       customerName: namePublic,
     })
 
-    return res.status(201).json(purchase)
+    const success = purchase.status === "PAID"
+    const message = getStatusMessage(purchase.status)
+
+    return res.status(201).json({
+      success,
+      status: purchase.status,
+      message,
+      data: purchase,
+    })
   }
 }
