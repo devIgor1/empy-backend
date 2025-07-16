@@ -10,7 +10,3 @@ export const getStatusMessage = (status: string) => {
       return "Ocorreu um erro no pagamento."
   }
 }
-
-// PAID - Pagamento aprovado com sucesso!
-// DECLINED_NO_LIMIT - Pagamento recusado por falta de limite no cartão.
-// NOT_AUTHORIZED - Pagamento não autorizado pelo emissor.
