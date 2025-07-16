@@ -4,6 +4,8 @@ import { CreateCustomPlanDTO } from "../../validators/planValidator"
 
 const prisma = new PrismaClient()
 
+const baseUrl = "http://localhost:3333" // ajuste se estiver em produção
+
 export class CreateCustomPlanService {
   async execute(data: CreateCustomPlanDTO) {
     const basePlan = await prisma.plan.findUnique({
@@ -14,9 +16,11 @@ export class CreateCustomPlanService {
       throw new Error("Plano base não encontrado")
     }
 
+    const id = uuidv4()
+
     const newPlan = await prisma.plan.create({
       data: {
-        id: uuidv4(),
+        id,
         publicName: data.namePublic,
         internalName: data.nameInternal,
         monthlyPrice: data.monthlyPrice,
@@ -27,10 +31,16 @@ export class CreateCustomPlanService {
         isRecommended: false,
         offlineCredits: basePlan.offlineCredits,
         onlineCredits: basePlan.onlineCredits,
-        paymentLink: basePlan.paymentLink,
+        paymentLink: "",
       },
     })
 
-    return newPlan
+    const updatedPlan = await prisma.plan.update({
+      where: { id: newPlan.id },
+      data: {
+        paymentLink: `${baseUrl}/pay/${newPlan.id}`,
+      },
+    })
+    return updatedPlan
   }
 }
