@@ -3,8 +3,7 @@ import { v4 as uuidv4 } from "uuid"
 import { CreateCustomPlanDTO } from "../../validators/planValidator"
 
 const prisma = new PrismaClient()
-
-const baseUrl = "http://localhost:3333" // ajuste se estiver em produção
+const frontendBaseUrl = process.env.FRONTEND_BASE_URL ?? "http://localhost:5173"
 
 export class CreateCustomPlanService {
   async execute(data: CreateCustomPlanDTO) {
@@ -31,16 +30,10 @@ export class CreateCustomPlanService {
         isRecommended: false,
         offlineCredits: basePlan.offlineCredits,
         onlineCredits: basePlan.onlineCredits,
-        paymentLink: "",
+        paymentLink: `${frontendBaseUrl}/?custom=${id}`,
       },
     })
 
-    const updatedPlan = await prisma.plan.update({
-      where: { id: newPlan.id },
-      data: {
-        paymentLink: `${baseUrl}/pay/${newPlan.id}`,
-      },
-    })
-    return updatedPlan
+    return newPlan
   }
 }
