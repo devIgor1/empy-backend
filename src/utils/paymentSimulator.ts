@@ -1,15 +1,17 @@
-let callCount = 0
+import { PurchaseStatus } from "@prisma/client"
 
-export function simulatePayment() {
-  const sequence = [
-    "PAID",
-    "DECLINED_NO_LIMIT",
-    "PAID",
-    "NOT_AUTHORIZED",
-    "PAID",
+let step = 0
+
+export function simulatePayment(): PurchaseStatus {
+  const flow: PurchaseStatus[] = [
+    "PAID", // 1. Standard
+    "DECLINED_NO_LIMIT", // 2. Pro
+    "PAID", // 3. Pro
+    "NOT_AUTHORIZED", // 4. Standard
+    "PAID", // 5. Standard
   ]
 
-  const status = sequence[callCount] || "PAID"
-  callCount++
+  const status = flow[step] || "PAID"
+  step++
   return status
 }
