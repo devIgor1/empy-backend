@@ -16,9 +16,8 @@ export class CreateCheckoutController {
       })
     }
 
-    const amount = cycle === "monthly" ? monthlyPrice : annualPrice
-    const billingCycle: BillingCycle =
-      cycle === "monthly" ? "MONTHLY" : "ANNUAL"
+    const amount = cycle === "mensal" ? monthlyPrice : annualPrice
+    const billingCycle: BillingCycle = cycle === "mensal" ? "MONTHLY" : "ANNUAL"
 
     const service = new CreatePurchaseService()
     const purchase = await service.execute({
