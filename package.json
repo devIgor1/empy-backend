@@ -17,8 +17,8 @@
   },
   "description": "\"# empy-backend\"",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/server.js",
+    "build": "tsup",
+    "vercel-build": "npm run build",
     "postinstall": "prisma generate"
   },
   "prisma": {
