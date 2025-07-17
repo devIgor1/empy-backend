@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Plan {
+  id             String     @id @default(uuid())
+  publicName     String
+  internalName   String?
+  monthlyPrice   Float
+  annualPrice    Float
+  discount       Float? // percentage
+  isCustom       Boolean    @default(false)
+  offlineCredits Int
+  onlineCredits  String
+  isActive       Boolean    @default(true)
+  isRecommended  Boolean    @default(false)
+  paymentLink    String?
+  createdAt      DateTime   @default(now())
+  purchases      Purchase[]
+}
+
+model Purchase {
+  id           String         @id @default(uuid())
+  customerId   String
+  customerName String
+  planId       String
+  amount       Float
+  createdAt    DateTime       @default(now())
+  billingCycle BillingCycle
+  status       PurchaseStatus
+  plan         Plan           @relation(fields: [planId], references: [id], onDelete: Cascade)
+}
+
+enum BillingCycle {
+  MONTHLY
+  ANNUAL
+}
+
+enum PurchaseStatus {
+  PAID
+  DECLINED_NO_LIMIT
+  NOT_AUTHORIZED
+}
