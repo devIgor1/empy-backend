@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.router = void 0;
+const express_1 = require("express");
+const ListPlansController_1 = require("../controllers/plans/ListPlansController");
+const CreateCustomPlanController_1 = require("../controllers/plans/CreateCustomPlanController");
+const CreateCheckoutController_1 = require("../controllers/plans/CreateCheckoutController");
+const GetPlanByIdController_1 = require("../controllers/plans/GetPlanByIdController");
+const GetCurrentPlanController_1 = require("../controllers/plans/GetCurrentPlanController");
+const ListPurchasesController_1 = require("../controllers/purchases/ListPurchasesController");
+const router = (0, express_1.Router)();
+exports.router = router;
+router.get("/plans", new ListPlansController_1.ListPlansController().handle);
+router.get("/plans/:id", new GetPlanByIdController_1.GetPlanByIdController().handle);
+router.post("/plans/custom", new CreateCustomPlanController_1.CreateCustomPlanController().handle);
+router.post("/checkout/:planId/:cycle", new CreateCheckoutController_1.CreateCheckoutController().handle);
+router.get("/my-plan", new GetCurrentPlanController_1.GetCurrentPlanController().handle);
+router.get("/purchases", new ListPurchasesController_1.GetAllPurchasesController().handle);
