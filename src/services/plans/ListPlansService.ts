@@ -1,8 +1,8 @@
-import prismaClient from "../../prisma"
+import { prisma } from "../../lib/prisma"
 
 class ListPlansService {
   async execute() {
-    const plans = await prismaClient.plan.findMany({
+    const plans = await prisma.plan.findMany({
       where: {
         isActive: true,
       },

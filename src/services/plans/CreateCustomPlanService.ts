@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client"
 import { v4 as uuidv4 } from "uuid"
 import { CreateCustomPlanDTO } from "../../validators/planValidator"
+import { prisma } from "../../lib/prisma"
 
-const prisma = new PrismaClient()
 const frontendBaseUrl = process.env.FRONTEND_BASE_URL ?? "http://localhost:5173"
 
 export class CreateCustomPlanService {

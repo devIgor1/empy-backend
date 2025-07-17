@@ -6,6 +6,7 @@ import {
 } from "@prisma/client"
 import { v4 as uuidv4 } from "uuid"
 import { simulatePayment } from "../../utils/paymentSimulator"
+import { prisma } from "../../lib/prisma"
 
 export class CreatePurchaseService {
   async execute({
@@ -31,8 +32,6 @@ export class CreatePurchaseService {
       status,
       createdAt: new Date(),
     }
-
-    const prisma = new PrismaClient()
 
     await prisma.purchase.create({
       data: newPurchase,
