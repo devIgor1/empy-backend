@@ -18,6 +18,7 @@
   "description": "\"# empy-backend\"",
   "scripts": {
     "build": "tsup",
+    "postinstall": "prisma generate",
     "start": "node dist/server.js"
   },
   "prisma": {
