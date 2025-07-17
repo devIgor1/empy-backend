@@ -1,7 +1,7 @@
 import z from "zod"
 
 export const CreateCustomPlanSchema = z.object({
-  basePlanId: z.uuid(),
+  basePlanId: z.literal("2"),
   namePublic: z.string(),
   nameInternal: z.string().optional(),
   discount: z.number().min(0).max(100).optional(),

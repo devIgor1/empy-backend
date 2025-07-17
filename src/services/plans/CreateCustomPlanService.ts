@@ -10,7 +10,6 @@ export class CreateCustomPlanService {
     const basePlan = await prisma.plan.findUnique({
       where: { id: data.basePlanId },
     })
-
     if (!basePlan) {
       throw new Error("Plano base não encontrado")
     }
