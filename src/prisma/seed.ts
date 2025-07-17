@@ -4,7 +4,8 @@ import dotenv from "dotenv"
 dotenv.config()
 
 async function seed() {
-  const baseUrl = process.env.BASE_URL || "http://localhost:3333"
+  const frontendBaseUrl =
+    process.env.FRONTEND_BASE_URL ?? "http://localhost:5173"
   const discountRate = 2 / 12 // 16,67%
 
   const plans = [
@@ -52,7 +53,7 @@ async function seed() {
         onlineCredits: plan.onlineCredits,
         isActive: true,
         isRecommended: plan.isRecommended,
-        paymentLink: `${baseUrl}/pay/${plan.id}`,
+        paymentLink: `${frontendBaseUrl}/?custom=${plan.id}`,
       },
     })
   }
