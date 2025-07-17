@@ -20,7 +20,8 @@
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "build": "tsc --build",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "prisma:generate": "npx prisma generate"
   },
   "prisma": {
     "seed": "ts-node-dev src/prisma/seed.ts"
