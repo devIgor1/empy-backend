@@ -5,11 +5,9 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "rhel-openssl-3.0.x"]
-  output        = "./node_modules/@prisma/nextjs-monorepo-workaround-plugin/client"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
-
 
 datasource db {
   provider = "postgresql"

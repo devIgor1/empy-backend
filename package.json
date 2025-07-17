@@ -9,7 +9,6 @@
   "author": "devIgor1 <igormraesmm@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@prisma/nextjs-monorepo-workaround-plugin": "^6.12.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "ts-node-dev": "^2.0.0",
@@ -21,8 +20,7 @@
     "dev": "ts-node-dev --transpile-only src/server.ts",
     "build": "tsc --build",
     "start": "node dist/server.js",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate deploy"
+    "postinstall": "prisma generate"
   },
   "prisma": {
     "seed": "ts-node-dev src/prisma/seed.ts"
@@ -34,6 +32,7 @@
   "homepage": "https://github.com/devIgor1/empy-backend#readme",
   "dependencies": {
     "@prisma/client": "^6.12.0",
+    "@prisma/nextjs-monorepo-workaround-plugin": "^6.12.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
