@@ -2,8 +2,6 @@ import { v4 as uuidv4 } from "uuid"
 import { CreateCustomPlanDTO } from "../../validators/planValidator"
 import prismaClient from "../../prisma"
 
-const frontendBaseUrl = process.env.FRONTEND_BASE_URL ?? "http://localhost:5173"
-
 export class CreateCustomPlanService {
   async execute(data: CreateCustomPlanDTO) {
     const basePlan = await prismaClient.plan.findUnique({
@@ -28,7 +26,7 @@ export class CreateCustomPlanService {
         isRecommended: false,
         offlineCredits: basePlan.offlineCredits,
         onlineCredits: basePlan.onlineCredits,
-        paymentLink: `${frontendBaseUrl}/?custom=${id}`,
+        paymentLink: `${process.env.FRONTEND_BASE_URL}/?custom=${id}`,
       },
     })
 
