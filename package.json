@@ -19,7 +19,8 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only src/server.ts",
     "build": "tsup",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "postinstall": "npx prisma generate"
   },
   "prisma": {
     "seed": "ts-node src/prisma/seed.ts"
