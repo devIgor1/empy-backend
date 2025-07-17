@@ -20,9 +20,7 @@
     "dev": "ts-node-dev src/server.ts",
     "build": "npx prisma generate && tsc --build && cpx \"src/generated/**/*\" dist/generated",
     "start": "node dist/server.js",
-    "vercel-build": "npx prisma generate && npx prisma migrate deploy && tsc --build && cpx \"src/generated/**/*\" dist/generated",
-    "prisma:generate": "npx prisma generate",
-    "postinstall": "chmod +x node_modules/.bin/prisma"
+    "prisma:generate": "npx prisma generate"
   },
   "prisma": {
     "seed": "ts-node src/prisma/seed.ts"
