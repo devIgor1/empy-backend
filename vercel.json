@@ -3,19 +3,8 @@
   "builds": [
     {
       "src": "dist/server.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "prisma-client/.prisma/client/libquery_engine-rhel-openssl-3.0.x.so.node",
-          "prisma-client/@prisma/client/**/*"
-        ]
-      }
+      "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/server.js"
-    }
-  ]
+  "routes": [{ "src": "/(.*)", "dest": "dist/server.js" }]
 }
