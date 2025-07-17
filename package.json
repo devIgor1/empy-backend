@@ -18,8 +18,8 @@
   },
   "description": "\"# empy-backend\"",
   "scripts": {
-    "build": "tsup src/server.ts --out-dir dist --target node16 --format cjs --dts",
     "prisma:generate": "prisma generate",
+    "build": "tsup src/server.ts --out-dir dist --target node16 --format cjs",
     "vercel-build": "npm run prisma:generate && npm run build",
     "start": "node dist/server.js"
   },
