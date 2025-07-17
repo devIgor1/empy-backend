@@ -18,12 +18,12 @@
   },
   "description": "\"# empy-backend\"",
   "scripts": {
-  "dev": "ts-node-dev src/server.ts",
-  "build": "tsc --build",
-  "start": "node dist/server.js",
-  "vercel-build": "npx prisma generate && npx prisma migrate deploy && npm run build",
-  "prisma:generate": "npx prisma generate"
-},
+    "dev": "ts-node-dev src/server.ts",
+    "build": "tsc --build",
+    "start": "node dist/server.js",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build",
+    "prisma:generate": "npx prisma generate"
+  },
   "prisma": {
     "seed": "ts-node-dev src/prisma/seed.ts"
   },
