@@ -20,8 +20,7 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only src/server.ts",
     "build": "tsc --build",
-    "start": "node dist/server.js",
-    "postinstall": "cd packages/database && turbo run prisma:generate && mkdir -p ../../node_modules/.pnpm/@prisma+client@5.22.0_prisma@5.22.0/@prisma/client && cp ../../node_modules/.pnpm/@prisma+client@5.22.0_prisma@5.22.0/node_modules/.prisma/client/libquery_engine-rhel-openssl-3.0.x.so.node ../../node_modules/.pnpm/@prisma+client@5.22.0_prisma@5.22.0/@prisma/client/"
+    "start": "node dist/server.js"
   },
   "prisma": {
     "seed": "ts-node-dev src/prisma/seed.ts"
