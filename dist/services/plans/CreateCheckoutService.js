@@ -8,11 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreatePurchaseService = void 0;
-const client_1 = require("@prisma/client");
 const uuid_1 = require("uuid");
 const paymentSimulator_1 = require("../../utils/paymentSimulator");
+const prisma_1 = __importDefault(require("../../prisma"));
 class CreatePurchaseService {
     execute(_a) {
         return __awaiter(this, arguments, void 0, function* ({ planId, amount, billingCycle, customerName, }) {
@@ -27,8 +30,7 @@ class CreatePurchaseService {
                 status,
                 createdAt: new Date(),
             };
-            const prisma = new client_1.PrismaClient();
-            yield prisma.purchase.create({
+            yield prisma_1.default.purchase.create({
                 data: newPurchase,
             });
             return newPurchase;

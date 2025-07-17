@@ -8,14 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetPlanByIdService = void 0;
-const client_1 = require("@prisma/client");
-const prisma = new client_1.PrismaClient();
+const prisma_1 = __importDefault(require("../../prisma"));
 class GetPlanByIdService {
     execute(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const plan = yield prisma.plan.findUnique({
+            const plan = yield prisma_1.default.plan.findUnique({
                 where: { id },
             });
             return plan;
