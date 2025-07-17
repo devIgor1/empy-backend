@@ -1,8 +1,8 @@
-import { prisma } from "../../lib/prisma"
+import prismaClient from "../../prisma"
 
 export class ListPurchasesService {
   async execute() {
-    const purchases = await prisma.purchase.findMany({
+    const purchases = await prismaClient.purchase.findMany({
       orderBy: { createdAt: "desc" },
       select: {
         id: true,

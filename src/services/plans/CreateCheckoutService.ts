@@ -1,12 +1,7 @@
-import {
-  BillingCycle,
-  PrismaClient,
-  Purchase,
-  PurchaseStatus,
-} from "@prisma/client"
+import { BillingCycle, Purchase, PurchaseStatus } from "@prisma/client"
 import { v4 as uuidv4 } from "uuid"
 import { simulatePayment } from "../../utils/paymentSimulator"
-import { prisma } from "../../lib/prisma"
+import prismaClient from "../../prisma"
 
 export class CreatePurchaseService {
   async execute({
@@ -33,7 +28,7 @@ export class CreatePurchaseService {
       createdAt: new Date(),
     }
 
-    await prisma.purchase.create({
+    await prismaClient.purchase.create({
       data: newPurchase,
     })
 

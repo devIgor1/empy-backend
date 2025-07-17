@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from "uuid"
 import { CreateCustomPlanDTO } from "../../validators/planValidator"
-import { prisma } from "../../lib/prisma"
+import prismaClient from "../../prisma"
 
 const frontendBaseUrl = process.env.FRONTEND_BASE_URL ?? "http://localhost:5173"
 
 export class CreateCustomPlanService {
   async execute(data: CreateCustomPlanDTO) {
-    const basePlan = await prisma.plan.findUnique({
+    const basePlan = await prismaClient.plan.findUnique({
       where: { id: data.basePlanId },
     })
     if (!basePlan) {
@@ -15,7 +15,7 @@ export class CreateCustomPlanService {
 
     const id = uuidv4()
 
-    const newPlan = await prisma.plan.create({
+    const newPlan = await prismaClient.plan.create({
       data: {
         id,
         publicName: data.namePublic,

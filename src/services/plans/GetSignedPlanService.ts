@@ -1,8 +1,8 @@
-import { prisma } from "../../lib/prisma"
+import prismaClient from "../../prisma"
 
 export class GetSignedPlanService {
   async execute(customerId: string) {
-    const purchase = await prisma.purchase.findFirst({
+    const purchase = await prismaClient.purchase.findFirst({
       where: { customerId },
       orderBy: { createdAt: "desc" },
       include: { plan: true },
