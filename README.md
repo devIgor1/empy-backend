@@ -7,9 +7,9 @@ Este backend simula um sistema de planos de assinatura com funcionalidades de up
 
 O backend também está disponível em produção.
 
-🔗 Acesse diretamente a API sem precisar rodar localmente:
+🔗 Acesse diretamente o front-end sem precisar rodar localmente:
 
-[➡️ Link para o Backend Deploy](https://seu-backend-api.onrender.com)
+[➡️ Link para o deploy do Frontend](https://empy-frontend.vercel.app/)
 
 > 💡 Se preferir realizar testes locais, continue com os passos de instalação e execução abaixo.
 
