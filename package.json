@@ -20,8 +20,7 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only src/server.ts",
     "build": "tsc --build",
-    "start": "node dist/server.js",
-    "prisma:generate": "prisma generate"
+    "start": "node dist/server.js"
   },
   "prisma": {
     "seed": "ts-node-dev src/prisma/seed.ts"
